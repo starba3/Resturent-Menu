@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html class="" id="html-tag" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Restaurant Menu Overview</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 24
+    }
+  </style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#E2725B",
+            "background-light": "#F8F8F8",
+            "background-dark": "#181818",
+            "text-light": "#333333",
+            "text-dark": "#EAEAEA",
+            "accent-light": "#C8A464",
+            "accent-dark": "#D4B070",
+            "surface-light": "#FFFFFF",
+            "surface-dark": "#242424",
+            "border-light": "#EAEAEA",
+            "border-dark": "#333333"
+          },
+          fontFamily: {
+            "display": ["Plus Jakarta Sans", "sans-serif"]
+          },
+          borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark">
+<div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden" id="page-container">
+<div class="layout-container flex h-full grow flex-col">
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-border-light dark:border-border-dark bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm px-4 sm:px-8 lg:px-16 py-4">
+<div class="flex items-center gap-3 text-text-light dark:text-text-dark">
+<div class="text-primary size-7">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="currentColor"></path>
+</svg>
+</div>
+<h1 class="text-xl font-bold tracking-tight">Restaurante</h1>
+</div>
+<nav class="hidden md:flex flex-1 justify-center items-center gap-8 text-sm font-medium">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-primary font-bold" href="#">Menu</a>
+<a class="hover:text-primary transition-colors" href="#">Reservations</a>
+<a class="hover:text-primary transition-colors" href="#">Contact</a>
+</nav>
+<div class="flex items-center gap-4">
+<div class="relative inline-flex items-center rounded-full bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark p-1 text-sm font-semibold">
+<button class="px-3 py-1 rounded-full bg-primary text-white z-10" id="lang-en">EN</button>
+<button class="px-3 py-1 rounded-full text-text-light/70 dark:text-text-dark/70 hover:text-text-light dark:hover:text-text-dark z-10" id="lang-ar">AR</button>
+</div>
+<a class="hidden sm:inline-flex items-center justify-center rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="tel:+1234567890">Order Now</a>
+</div>
+</header>
+<main class="flex-1 px-4 sm:px-8 lg:px-16 py-10">
+<div class="mx-auto max-w-7xl">
+<div class="flex flex-wrap justify-between gap-4 py-6">
+<div class="flex flex-col gap-2">
+<p class="text-text-light dark:text-text-dark text-4xl sm:text-5xl font-extrabold tracking-tighter">Our Menu</p>
+<p class="text-text-light/70 dark:text-text-dark/70 text-base font-normal">Explore our delicious offerings, crafted with the freshest ingredients.</p>
+</div>
+</div>
+<div class="py-6">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 rtl:left-auto rtl:right-4 top-1/2 -translate-y-1/2 text-text-light/50 dark:text-text-dark/50">search</span>
+<input class="w-full h-12 pl-12 pr-4 rtl:pr-12 rtl:pl-4 rounded-full bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark focus:ring-2 focus:ring-primary focus:border-primary transition-colors placeholder:text-text-light/50 dark:placeholder:text-text-dark/50" id="search-input" placeholder="Search for a dish..." type="search"/>
+</div>
+</div>
+<div class="py-6 overflow-x-auto">
+<div class="flex gap-3 pb-3" id="menu-categories">
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 py-6" id="menu-items">
+</div>
+</div>
+</main>
+<footer class="px-4 sm:px-8 lg:px-16 py-16 text-center bg-surface-light dark:bg-surface-dark border-t border-border-light dark:border-border-dark">
+<div class="mx-auto max-w-7xl w-full">
+<div class="flex flex-col gap-8 items-center">
+<a class="flex items-center gap-3 text-text-light dark:text-text-dark" href="#">
+<div class="text-primary size-9">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-2xl font-bold tracking-tight">Restaurante</h2>
+</a>
+<div class="flex flex-col md:flex-row flex-wrap items-center justify-center gap-x-12 gap-y-6 text-base text-text-light dark:text-text-dark">
+<a class="flex items-center gap-2.5 hover:text-primary transition-colors text-lg" href="https://maps.google.com" target="_blank">
+<span class="material-symbols-outlined text-2xl text-primary">location_on</span>
+<span class="font-medium">123 Culinary Lane, Foodie City</span>
+</a>
+<a class="font-semibold text-lg hover:text-primary transition-colors flex items-center gap-2.5" href="tel:1234567890">
+<span class="material-symbols-outlined text-2xl text-primary">call</span>
+<span class="font-medium">(123) 456-7890</span>
+</a>
+<a class="flex items-center gap-2.5 hover:text-primary transition-colors text-lg" href="https://maps.google.com" target="_blank">
+<span class="material-symbols-outlined text-2xl text-primary">schedule</span>
+<span class="font-medium">Open: 11am - 10pm</span>
+</a>
+</div>
+</div>
+<div class="my-10 h-px w-24 bg-border-light dark:bg-border-dark mx-auto"></div>
+<div class="flex flex-wrap justify-center gap-6">
+<span aria-label="Instagram" class="cursor-not-allowed">
+<svg class="text-text-light/70 dark:text-text-dark/70 transition-colors size-7" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+</span>
+<span aria-label="Facebook" class="cursor-not-allowed">
+<svg class="text-text-light/70 dark:text-text-dark/70 transition-colors size-7" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+</span>
+<span aria-label="Twitter" class="cursor-not-allowed">
+<svg class="text-text-light/70 dark:text-text-dark/70 transition-colors size-7" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+</span>
+</div>
+<p class="text-text-light/50 dark:text-text-dark/50 text-xs mt-10">© 2024 Restaurante. All Rights Reserved.</p>
+</div>
+</footer>
+</div>
+</div>
+<script>
+    const menuData = {
+        en: {
+            categories: [
+                { id: "all", name: "All", icon: "restaurant_menu" },
+                { id: "appetizers", name: "Appetizers", icon: "tapas" },
+                { id: "soups_salads", name: "Soups & Salads", icon: "soup_kitchen" },
+                { id: "main_courses", name: "Main Courses", icon: "dinner_dining" },
+                { id: "grills", name: "Grills", icon: "outdoor_grill" },
+                { id: "desserts", name: "Desserts", icon: "cake" },
+                { id: "beverages", name: "Beverages", icon: "local_bar" }
+            ],
+            items: [
+                { category: "main_courses", name: "Grilled Salmon", description: "Perfectly grilled salmon fillet served with asparagus and a lemon-dill sauce.", price: "$24.00", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBS6fTpTXsL4ppN18xIa52dYiensovix73wN5DqFCEQszcBg4yaweP2fIsX1DBOcmVqYdV0PEr8cItUkhYAqKlYkdbROArj5XSx8Ct0JuwcrJdYu5t30Nnmxp2peAu6170tFAda4kPfMYBdexUC1Md4Cl7N7Cr1uNW9QVk725sQZJPvSEWT5jqcqLHWE4WpKVvNRd33nFBHqDmHmdT68-HxTtPVhX9Q2XM3b62BbFfiy3wOcObF4BilzNJATGhuqJH0Irv7F0eXPeE" },
+                { category: "soups_salads", name: "Caprese Salad", description: "Fresh mozzarella, ripe tomatoes, and basil, drizzled with balsamic glaze.", price: "$12.00", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuB47fWlVVILx95ev08n3fmaLYOGpUkq2UDKWZdCVUWE9B78sBzN9x7zYQ-wZz4QvM2jZaJ-tpjfARoEGHDlU2zhFl3Bndha5tQ5BSFcGYB8h1EHewJpEguqugbOpif82mEa-mvqbVezGFLD68_FbMvO1BF4ymI3G4XF6ICLD9VLWSnkACtCIMiRmbRRoBIphij8z5u2KODxsgaFD9bXxWIZ1qAN3sA5qGkSxy550m5vHPAxP8WftG6gbLy_Cew_X3f0hGKJglW-ko0" },
+                { category: "main_courses", name: "Steak Frites", description: "Juicy sirloin steak served with crispy golden French fries.", price: "$28.00", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDNjc8xxqPPm1jsBnQBDBsaVAoj8nvSeyKr-3qpmNMnb5wJtkv3LKq4XRNiqdD6B0F8w4vijloqEH8bDS-Y9JsX0jHPPa6Wt4n5iU3ndQmBxHeIpjx-Mjh4Qa2A5wqhCmjJA3WlOiw5qTEsiozB1ggLJWKvgBj2TWOt5phciqn7dQ5ZVK21N9s8owTFYlCLG2QAxFYIDGUEXiOO9oboSoaj-gfrN1jjp0o2s0qv7n4Nw9ucDZZyOf2SdloMaAySxsLnyYI71f_PyW4" },
+                { category: "main_courses", name: "Mushroom Risotto", description: "Creamy Arborio rice cooked with wild mushrooms and parmesan cheese.", price: "$20.00", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDqbbegE9iPmsIzGri3JsIg9YBQNw0shQ_qwjnChwxwu-fvCkufUpCe_rbssQs1ohJfid6H6b6Owweu_dYyTvKGsCNL2k9UpGuCdk6mCD98Mmyib_qnUVbVfV8sZPfBleWvZIXsjDfoVa8kVF8bYPoxxE8mAZrwMJRwgxtNSqfHt-9xmY2Ay41hBZoVxk9njLURD8KzsXlZZWVA17RdaZR4eQvvFQ_XSeIEQMaYbJHSE9EJaqex2T5wCOquYNaFFcFu-g3l6mvU4Us" },
+                { category: "desserts", name: "Chocolate Lava Cake", description: "Warm molten chocolate cake served with a scoop of vanilla ice cream.", price: "$9.00", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDuFVYItpaBYFhgkut21mal2FO0-WoAVV7McQHLSCFVfpRNT3VmNoC4uE4Ka-tpsIfp68u-s6hPfAlPmmUnryGG6fmMDOC0cjjQFsQC_pzFLRIpPjFBHax7K4NDGjEvpVtls2j8AJQxFokCcrv1QW6UIMM6jBTHPQyYLY1FdjMLSLsQctDwZ6yds6F31fankSe7MRQm8FFleaIe6LhDePhDh5npMrBR0BLz-Q1fqs0tr4TWlaWvpWtk5qgYomV3x-gknBmC-9shL58" },
+                { category: "desserts", name: "Tiramisu", description: "A classic Italian dessert with layers of coffee-soaked ladyfingers and mascarpone cream.", price: "$9.00", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBE8jQAzmjPeAfHeIpsrGmn-gE2SgJXV4wdFvzKVRP5erftCA-DilqOxGqBzuuSkKaSae4GsK8_Dx5lBsJieGBIOEweLCLdNRCiOwy-l3zFtkxb5USy6uEo0n4aPffXqqxwoJSNEvBpnyUPMsMOyvPVbQLWrepEgy8BDtfMSf-nBSjfwg1ZqQ8ApN25CqMKap2mPK1Cv9IGaT-EAFnPBuuGj7zUsUTQkyWqY3Wt7gJG8p9TMHS0jk3F0xsn2h050w4f8IRL2QEN9sU" },
+                { category: "grills", name: "Lemon Herb Chicken", description: "Tender chicken breast marinated in lemon and herbs, roasted to perfection.", price: "$22.00", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCzw8GF7vk6_xy011bUB-ZI9OMStHsNeNjMa1xNqVvsaZev36jg6Pef5WbvbNphbHVJU17St1aeWdnrk7oktXFCzg_3Za6M2uukCmIN2vEkflpILQv92npw6DoSrLsJMA0wOXu_e05JOMZq7IsFAVsxOJHgUDBjdoSKVQDkh2UdGtebY2bEWgPAH_mzRI8CwMEqtpq2BvRqVWu4a1fzWAtEPvoztpiydxv-STIX3F6fVptNtLoMgWljT3dg7OUrU-OroY_xIUirhWg" },
+                { category: "appetizers", name: "Classic Bruschetta", description: "Toasted baguette topped with fresh tomatoes, garlic, basil, and olive oil.", price: "$10.00", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDdFHm151EPdUafy9omr7myA-CGjnp0r-zOUtHqdZssXJSbCq2x3vmfR-69jhY8TCmFfqEM75vZjDnJlqK9MwX2aMezQpYjMzI5l3By3zQdRfQpeh7aQISGPXGlzrnecokBj5_kc5NIGHvxOmZvkd08uU8XOAvtgBW_2Zs65Tl0Klo-_l4IxpOCQC9FcKA6jb7AY2CkPJxP0KBgtmvwW1ev2b23yiMPzr6sb2js3QP69Ao-BeTSA8T08m2jRq9lM-4OReYH-x7CAwc" }
+            ]
+        },
+        ar: {
+            categories: [
+                { id: "all", name: "الكل", icon: "restaurant_menu" },
+                { id: "appetizers", name: "مقبلات", icon: "tapas" },
+                { id: "soups_salads", name: "شوربات وسلطات", icon: "soup_kitchen" },
+                { id: "main_courses", name: "أطباق رئيسية", icon: "dinner_dining" },
+                { id: "grills", name: "مشاوي", icon: "outdoor_grill" },
+                { id: "desserts", name: "حلويات", icon: "cake" },
+                { id: "beverages", name: "مشروبات", icon: "local_bar" }
+            ],
+            items: [
+                { category: "main_courses", name: "سلمون مشوي", description: "شريحة سلمون مشوية تقدم مع الهليون وصلصة الليمون والشبت.", price: "٢٤.٠٠ دولار", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBS6fTpTXsL4ppN18xIa52dYiensovix73wN5DqFCEQszcBg4yaweP2fIsX1DBOcmVqYdV0PEr8cItUkhYAqKlYkdbROArj5XSx8Ct0JuwcrJdYu5t30Nnmxp2peAu6170tFAda4kPfMYBdexUC1Md4Cl7N7Cr1uNW9QVk725sQZJPvSEWT5jqcqLHWE4WpKVvNRd33nFBHqDmHmdT68-HxTtPVhX9Q2XM3b62BbFfiy3wOcObF4BilzNJATGhuqJH0Irv7F0eXPeE" },
+                { category: "soups_salads", name: "سلطة كابريزي", description: "جبنة الموزاريلا الطازجة والطماطم والريحان مع خل البلسميك.", price: "١٢.٠٠ دولار", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuB47fWlVVILx95ev08n3fmaLYOGpUkq2UDKWZdCVUWE9B78sBzN9x7zYQ-wZz4QvM2jZaJ-tpjfARoEGHDlU2zhFl3Bndha5tQ5BSFcGYB8h1EHewJpEguqugbOpif82mEa-mvqbVezGFLD68_FbMvO1BF4ymI3G4XF6ICLD9VLWSnkACtCIMiRmbRRoBIphij8z5u2KODxsgaFD9bXxWIZ1qAN3sA5qGkSxy550m5vHPAxP8WftG6gbLy_Cew_X3f0hGKJglW-ko0" },
+                { category: "main_courses", name: "ستيك وبطاطا مقلية", description: "شريحة لحم سيرلوين طرية تقدم مع بطاطا مقلية ذهبية مقرمشة.", price: "٢٨.٠٠ دولار", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDNjc8xxqPPm1jsBnQBDBsaVAoj8nvSeyKr-3qpmNMnb5wJtkv3LKq4XRNiqdD6B0F8w4vijloqEH8bDS-Y9JsX0jHPPa6Wt4n5iU3ndQmBxHeIpjx-Mjh4Qa2A5wqhCmjJA3WlOiw5qTEsiozB1ggLJWKvgBj2TWOt5phciqn7dQ5ZVK21N9s8owTFYlCLG2QAxFYIDGUEXiOO9oboSoaj-gfrN1jjp0o2s0qv7n4Nw9ucDZZyOf2SdloMaAySxsLnyYI71f_PyW4" },
+                { category: "main_courses", name: "ريزوتو بالفطر", description: "أرز أربوريو كريمي مطبوخ مع الفطر البري وجبنة البارميزان.", price: "٢٠.٠٠ دولار", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDqbbegE9iPmsIzGri3JsIg9YBQNw0shQ_qwjnChwxwu-fvCkufUpCe_rbssQs1ohJfid6H6b6Owweu_dYyTvKGsCNL2k9UpGuCdk6mCD98Mmyib_qnUVbVfV8sZPfBleWvZIXsjDfoVa8kVF8bYPoxxE8mAZrwMJRwgxtNSqfHt-9xmY2Ay41hBZoVxk9njLURD8KzsXlZZWVA17RdaZR4eQvvFQ_XSeIEQMaYbJHSE9EJaqex2T5wCOquYNaFFcFu-g3l6mvU4Us" },
+                { category: "desserts", name: "كيكة الحمم بالشوكولاتة", description: "كيكة الشوكولاتة الدافئة الذائبة تقدم مع كرة من آيس كريم الفانيليا.", price: "٩.٠٠ دولار", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDuFVYItpaBYFhgkut21mal2FO0-WoAVV7McQHLSCFVfpRNT3VmNoC4uE4Ka-tpsIfp68u-s6hPfAlPmmUnryGG6fmMDOC0cjjQFsQC_pzFLRIpPjFBHax7K4NDGjEvpVtls2j8AJQxFokCcrv1QW6UIMM6jBTHPQyYLY1FdjMLSLsQctDwZ6yds6F31fankSe7MRQm8FFleaIe6LhDePhDh5npMrBR0BLz-Q1fqs0tr4TWlaWvpWtk5qgYomV3x-gknBmC-9shL58" },
+                { category: "desserts", name: "تيراميسو", description: "حلوى إيطالية كلاسيكية مكونة من طبقات من أصابع السيدة المنقوعة في القهوة وكريمة الماسكاربوني.", price: "٩.٠٠ دولار", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBE8jQAzmjPeAfHeIpsrGmn-gE2SgJXV4wdFvzKVRP5erftCA-DilqOxGqBzuuSkKaSae4GsK8_Dx5lBsJieGBIOEweLCLdNRCiOwy-l3zFtkxb5USy6uEo0n4aPffXqqxwoJSNEvBpnyUPMsMOyvPVbQLWrepEgy8BDtfMSf-nBSjfwg1ZqQ8ApN25CqMKap2mPK1Cv9IGaT-EAFnPBuuGj7zUsUTQkyWqY3Wt7gJG8p9TMHS0jk3F0xsn2h050w4f8IRL2QEN9sU" },
+                { category: "grills", name: "دجاج بالليمون والأعشاب", description: "صدر دجاج طري متبل بالليمون والأعشاب، مشوي بإتقان.", price: "٢٢.٠٠ دولار", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCzw8GF7vk6_xy011bUB-ZI9OMStHsNeNjMa1xNqVvsaZev36jg6Pef5WbvbNphbHVJU17St1aeWdnrk7oktXFCzg_3Za6M2uukCmIN2vEkflpILQv92npw6DoSrLsJMA0wOXu_e05JOMZq7IsFAVsxOJHgUDBjdoSKVQDkh2UdGtebY2bEWgPAH_mzRI8CwMEqtpq2BvRqVWu4a1fzWAtEPvoztpiydxv-STIX3F6fVptNtLoMgWljT3dg7OUrU-OroY_xIUirhWg" },
+                { category: "appetizers", name: "بروشيتا كلاسيكية", description: "خبز باغيت محمص مغطى بالطماطم الطازجة والثوم والريحان وزيت الزيتون.", price: "١٠.٠٠ دولار", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDdFHm151EPdUafy9omr7myA-CGjnp0r-zOUtHqdZssXJSbCq2x3vmfR-69jhY8TCmFfqEM75vZjDnJlqK9MwX2aMezQpYjMzI5l3By3zQdRfQpeh7aQISGPXGlzrnecokBj5_kc5NIGHvxOmZvkd08uU8XOAvtgBW_2Zs65Tl0Klo-_l4IxpOCQC9FcKA6jb7AY2CkPJxP0KBgtmvwW1ev2b23yiMPzr6sb2js3QP69Ao-BeTSA8T08m2jRq9lM-4OReYH-x7CAwc" }
+            ]
+        }
+    };
+    let currentLang = 'en';
+    let activeCategory = 'all';
+    let searchQuery = '';
+    function renderMenuItems(lang, categoryId, query) {
+        const itemsContainer = document.getElementById('menu-items');
+        itemsContainer.innerHTML = '';
+        const categoryFilteredItems = menuData[lang].items.filter(item => 
+            categoryId === 'all' || item.category === categoryId
+        );
+        const searchFilteredItems = categoryFilteredItems.filter(item =>
+            item.name.toLowerCase().includes(query.toLowerCase())
+        );
+        searchFilteredItems.forEach(item => {
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'flex flex-col gap-4 rounded-xl bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark overflow-hidden transition-shadow hover:shadow-lg';
+            itemDiv.innerHTML = `
+                <div class="w-full bg-center bg-no-repeat aspect-video bg-cover" style='background-image: url("${item.image}");'></div>
+                <div class="p-4 pt-0 flex flex-col flex-grow">
+                    <p class="text-text-light dark:text-text-dark text-lg font-bold">${item.name}</p>
+                    <p class="text-text-light/70 dark:text-text-dark/70 text-sm font-normal flex-grow">${item.description}</p>
+                    <p class="text-accent-light dark:text-accent-dark text-lg font-bold mt-3 text-left rtl:text-right">${item.price}</p>
+                </div>
+            `;
+            itemsContainer.appendChild(itemDiv);
+        });
+    }
+    function renderMenuCategories(lang) {
+        const categoriesContainer = document.getElementById('menu-categories');
+        categoriesContainer.innerHTML = '';
+        menuData[lang].categories.forEach(category => {
+            const button = document.createElement('button');
+            const isActive = category.id === activeCategory;
+            button.className = `flex h-12 shrink-0 items-center justify-center gap-x-2.5 rounded-full pl-4 pr-5 rtl:pl-5 rtl:pr-4 ${isActive ? 'bg-primary text-white' : 'bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark hover:bg-black/5 dark:hover:bg-white/5 transition-colors'}`;
+            button.innerHTML = `
+                <div class="size-8 rounded-full flex items-center justify-center ${isActive ? 'bg-white/20' : 'bg-background-light dark:bg-background-dark'}">
+                    <span class="material-symbols-outlined text-base">${category.icon}</span>
+                </div>
+                <p class="text-sm ${isActive ? 'font-semibold' : 'font-medium'}">${category.name}</p>
+            `;
+            button.addEventListener('click', () => {
+                activeCategory = category.id;
+                renderMenuCategories(lang);
+                renderMenuItems(lang, activeCategory, searchQuery);
+            });
+            categoriesContainer.appendChild(button);
+        });
+    }
+    function renderMenu(lang) {
+        currentLang = lang;
+        document.getElementById('search-input').value = '';
+        searchQuery = '';
+        renderMenuCategories(lang);
+        renderMenuItems(lang, activeCategory, searchQuery);
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        const htmlTag = document.getElementById('html-tag');
+        const enButton = document.getElementById('lang-en');
+        const arButton = document.getElementById('lang-ar');
+        const searchInput = document.getElementById('search-input');
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            renderMenuItems(currentLang, activeCategory, searchQuery);
+        });
+        enButton.addEventListener('click', () => {
+            htmlTag.lang = 'en';
+            htmlTag.dir = 'ltr';
+            htmlTag.classList.remove('rtl');
+            enButton.classList.add('bg-primary', 'text-white');
+            enButton.classList.remove('text-text-light/70', 'dark:text-text-dark/70', 'hover:text-text-light', 'dark:hover:text-text-dark');
+            arButton.classList.remove('bg-primary', 'text-white');
+            arButton.classList.add('text-text-light/70', 'dark:text-text-dark/70', 'hover:text-text-light', 'dark:hover:text-text-dark');
+            renderMenu('en');
+        });
+        arButton.addEventListener('click', () => {
+            htmlTag.lang = 'ar';
+            htmlTag.dir = 'rtl';
+            htmlTag.classList.add('rtl');
+            arButton.classList.add('bg-primary', 'text-white');
+            arButton.classList.remove('text-text-light/70', 'dark:text-text-dark/70', 'hover:text-text-light', 'dark:hover:text-text-dark');
+            enButton.classList.remove('bg-primary', 'text-white');
+            enButton.classList.add('text-text-light/70', 'dark:text-text-dark/70', 'hover:text-text-light', 'dark:hover:text-text-dark');
+            renderMenu('ar');
+        });
+        renderMenu(currentLang);
+    });
+</script>
+</body></html>
